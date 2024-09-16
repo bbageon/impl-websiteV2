@@ -15,11 +15,15 @@ public class User {
     private String user_id;
 
     @NonNull
+    @Column()
+    private String user_email;
+
+    @NonNull
     @Column(length = 15)
     private String user_password;
 
     @NonNull
-    @Column(name = "user_name")
+    @Column()
     private String user_name;
 
 }
