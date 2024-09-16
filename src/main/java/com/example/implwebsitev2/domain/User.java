@@ -1,9 +1,13 @@
 package com.example.implwebsitev2.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.lang.NonNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 //@Table(name ="user")  // 사용하지 않으면 클래스 이름이 테이블 이름이 됨
@@ -26,4 +30,7 @@ public class User {
     @Column()
     private String user_name;
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<WriteReport> reports = new ArrayList<>();
 }
