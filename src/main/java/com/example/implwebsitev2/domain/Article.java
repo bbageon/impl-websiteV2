@@ -8,38 +8,45 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.lang.NonNull;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
-@Entity
-@Getter
-@Setter
+    @Entity
+    @Getter
+    @Setter
 
-public class Article {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Article_id; // 식별자 (기본 키)
+    public class Article {
+        public enum ArticleCategory {
+            project,
+            research,
+            memorize,
+        }
 
-    @NonNull
-    @Column()
-    private String Title; // 게시글 제목
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long Article_id; // 식별자 (기본 키)
 
-    @NonNull
-    @Column()
-    private String content; // 게시글 내용
+        @NonNull
+        @Column()
+        private String Title; // 게시글 제목
 
-    @NonNull
-    @Column()
-    private String author; // 게시글 작성자
+        @NonNull
+        @Column()
+        private String content; // 게시글 내용
 
-    @NonNull
-    @Column()
-    private String category; // 게시글 카테고리
+        @NonNull
+        @Column()
+        private String author; // 게시글 작성자
 
-    @Column
-    @CreationTimestamp
-    private LocalDateTime created_at; // 게시글 생성시간
+        @NonNull
+        @Enumerated(EnumType.STRING)
+        @Column()
+        private ArticleCategory category; // 게시글 카테고리
 
-    @Column
-    @UpdateTimestamp
-    private LocalDateTime updated_at; // 게시글 수정시간
-}
+        @Column
+        @CreationTimestamp
+        private LocalDateTime created_at; // 게시글 생성시간
+
+        @Column
+        @UpdateTimestamp
+        private LocalDateTime updated_at; // 게시글 수정시간
+    }
+
